@@ -8,5 +8,9 @@ namespace ATM
 {
     class Card
     {
+        public string PAN { get; set; }
+        public string PIN { get; set; }
+        public string CVC { get; set; }
+
     }
 }
