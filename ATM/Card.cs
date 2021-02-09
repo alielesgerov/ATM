@@ -33,10 +33,11 @@ namespace ATM
 
             set
             {
-                if(value.Length==16)
+                if(!IsValid.IsPanValid(value))
                 {
-                    _pan = value;
+                    throw new InvalidOperationException("Invalid PAN!!");
                 }
+                _pan = value;
             }
         }
 
@@ -49,10 +50,11 @@ namespace ATM
 
             set
             {
-                if (value.Length == 4)
+                if (!IsValid.IsPinValid(value))
                 {
-                    _pin = value;
+                    throw new InvalidOperationException("Invalid PIN!!");
                 }
+                _pin = value;
             }
         }
 
@@ -65,10 +67,11 @@ namespace ATM
 
             set
             {
-                if (value.Length == 3)
+                if (!IsValid.IsCvcValid(value))
                 {
-                    _cvc = value;
+                    throw new InvalidOperationException("Invalid CVC!!");
                 }
+                _cvc = value;
             }
         }
 
@@ -88,6 +91,33 @@ namespace ATM
             }
         }
 
+        public void ShowCardInfo()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.WriteLine("=================================");
+            Console.ResetColor();
+            Console.Write("PAN: ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(PAN);
+            Console.ResetColor();
+            Console.Write("Expire Date: ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(ExpireDate);
+            Console.ResetColor();
+            Console.Write("CVC: ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine(CVC);
+            ShowBalance();
+        }
+
+        public void ShowBalance()
+        {
+            Console.ResetColor();
+            Console.Write("Balance: ");
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine(Balance);
+            Console.ResetColor();
+        }
 
     }
 }
