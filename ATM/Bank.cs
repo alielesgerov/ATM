@@ -149,6 +149,7 @@ namespace ATM
                 client.CreditCard.Balance -= cash;
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Success");
+                Console.ResetColor();
             }
             else
                 throw new Exception("poor boi u don't have enough money");
