@@ -46,9 +46,11 @@
     <Compile Include="Bank.cs" />
     <Compile Include="Card.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="Find.cs" />
     <Compile Include="IsValid.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transaction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
