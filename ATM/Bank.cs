@@ -26,17 +26,25 @@ namespace ATM
             int index = -1;
             while(index==-1)
             {
-                Console.Write("Please Enter Your PIN: ");
-                string pin=Console.ReadLine();
-                index = Find.FindByPIN(clients, pin);
-                if (index!=-1)
-                {
-                    index=MainMenu(clients,clients[index]);
-                }
-                else
+                try
                 {
                     Console.Clear();
-                    continue;
+                    Console.Write("Please Enter Your PIN: ");
+                    string pin=Console.ReadLine();
+                    index = Find.FindByPIN(clients, pin);
+                    if (index!=-1)
+                    {
+                        index=MainMenu(clients,clients[index]);
+                    }
+                    else
+                    {
+                        throw new Exception("PIN not found");                       
+                    }
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    System.Threading.Thread.Sleep(1000);
                 }
             }
         }
@@ -45,7 +53,7 @@ namespace ATM
 
         public int MainMenu(in Client[]clients,in Client client)
         {
-            string[] options = new string[] { "Balance", "Cash", "Transaction" ,"Back" ,"Exit" };
+            string[] options = new string[] { "User Info","Balance", "Cash", "Transaction" ,"Back" ,"Exit" };
             string text = $"Welcome {client.Name} {client.Surname}";
             System.Threading.Thread.Sleep(1000);
             while (true)
@@ -54,17 +62,22 @@ namespace ATM
                 {
                     case 0:
                         Console.Clear();
+                        client.ShowClientInfo();
+                        Console.ReadKey(true);
+                        continue;
+                    case 1:
+                        Console.Clear();
                         client.CreditCard.ShowBalance();
                         System.Threading.Thread.Sleep(1000);
                         continue;
-                    case 1:
+                    case 2:
                         Cash(client);
                         System.Threading.Thread.Sleep(1000);
                         continue;
-                    case 2:
+                    case 3:
                         Transaction.Start(clients, client);
                         continue;
-                    case 3:
+                    case 4:
                         Console.Clear();
                         return -1;
                     default:

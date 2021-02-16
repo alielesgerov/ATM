@@ -54,5 +54,15 @@ namespace ATM
             }
             return false;
         }
+
+        public static bool IsValueValid(string value)
+        {
+            foreach (char check in "1234567890")
+            {
+                if (value.Contains(check.ToString()))
+                    return true;
+            }
+            return false;
+        }
     }
 }
